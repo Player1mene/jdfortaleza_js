@@ -104,6 +104,9 @@
 	Esse numero é: 0
 </div>
 
+
+
+<h3>Coloque três numeros</h3>
 <form id="form-trid">
 	<div style="display: flex; gap: 5px;">
 	<input type="number" class="number01" placeholder="Numero 1"/>
@@ -115,6 +118,55 @@
 
 <div class="numeros-trid">
 	O Maior numero é: 0
+</div>
+
+
+
+<h3>Coloque uma letra (F ou M)</h3>
+<div style="display: flex; gap: 5px;">
+<input type="text" class="sexo" placeholder="Coloque uma letra (F ou M)"/>
+</div>
+
+<div class="letra">
+	X
+</div>
+
+
+<h3>Qual horário que você trabalha</h3>
+<div style="display: flex; gap: 5px;">
+<input type="text" class="work" placeholder="Escreva: (Matutino, Vespertino ou Noturno)"/>
+</div>
+
+<div class="work-hours">
+	X
+</div>
+
+<h3>Coloque três numeros</h3>
+<form id="form-trid-m">
+	<div style="display: flex; gap: 5px;">
+	<input type="number" class="number01-m" placeholder="Numero 1"/>
+	<input type="number" class="number02-m" placeholder="Numero 2"/>
+	<input type="number" class="number03-m" placeholder="Numero 2"/>
+	</div>
+	<button type="submit">Mostrar maior numero e menor numero</button>
+</form>
+
+<div class="numeros-trid-m">
+	X
+</div>
+
+
+<h3>Calcule sua media</h3>
+<form id="form-media">
+	<div style="display: flex; gap: 5px;">
+	<input type="number" class="nota01" placeholder="Nota 1"/>
+	<input type="number" class="nota02" placeholder="Nota 2"/>
+	</div>
+	<button type="submit">Resultado</button>
+</form>
+
+<div class="numeros-media">
+	X
 </div>
 <script type="text/javascript">
 	const formSoma = document.querySelector('#form-soma');
@@ -155,6 +207,88 @@
 			document.querySelector('.numeros-trid').innerText = "O Maior numero é: "+numero02;
 		}else if(Number(numero03) > Number(numero01) && Number(numero03) > Number(numero02)){
 			document.querySelector('.numeros-trid').innerText = "O Maior numero é: "+numero03;
+		}
+	})
+
+	const formMedia = document.querySelector('#form-media');
+	formMedia.addEventListener('submit', event =>{
+		event.preventDefault();
+		let numero01 = document.querySelector('.nota01').value;
+		let numero02 = document.querySelector('.nota02').value;
+		let media = (Number(numero01) + Number(numero02)) / 2;
+		if(media >= 7){
+			document.querySelector('.numeros-media').innerText = "Aprovado"
+		}
+
+		if(media == 10){
+			document.querySelector('.numeros-media').innerText = "Aprovado com Distinção"
+		}
+
+		if(media < 7){
+			document.querySelector('.numeros-media').innerText = "Reprovado"	
+		}
+	})
+
+	const formTridM = document.querySelector('#form-trid-m');
+	formTridM.addEventListener('submit', event =>{
+		event.preventDefault();
+		let numero01 = document.querySelector('.number01-m').value;
+		let numero02 = document.querySelector('.number02-m').value;
+		let numero03 = document.querySelector('.number03-m').value;
+		let valorMaior = 0;
+		let valorMenor = 0;
+
+		if(Number(numero01) > Number(numero02) && Number(numero01) > Number(numero03)){
+			valorMaior = Number(numero01);
+
+		}else if(Number(numero02) > Number(numero01) && Number(numero02) > Number(numero03)){
+			valorMaior = Number(numero02);
+
+		}else if(Number(numero03) > Number(numero01) && Number(numero03) > Number(numero02)){
+			valorMaior = Number(numero03);
+		}
+
+
+		if(Number(numero01) < Number(numero02) && Number(numero01) < Number(numero03)){
+			valorMenor = Number(numero01);
+		}else if(Number(numero02) < Number(numero01) && Number(numero02) < Number(numero03)){
+			valorMenor = Number(numero02);
+		}else if(Number(numero03) < Number(numero01) && Number(numero03) < Number(numero02)){
+			valorMenor = Number(numero03);
+		}		
+
+
+		document.querySelector('.numeros-trid-m').innerText = "O Maior numero é: "+valorMaior+" e o Menor numero é: "+valorMenor;
+
+	})
+
+
+	document.querySelector('.sexo').addEventListener('keyup',()=>{
+		let letra = document.querySelector('.sexo').value;
+
+		let word = letra.split('');
+		let final = letra.length - 1;
+
+		if(word[final].toUpperCase() == "F"){
+			document.querySelector('.letra').innerText = "Feminino";
+		}else if(word[final].toUpperCase() == "M"){
+			document.querySelector('.letra').innerText = "Masculino";
+		}else{
+			document.querySelector('.letra').innerText = "Sexo invalido";
+		}
+	})
+
+	document.querySelector('.work').addEventListener('keyup',()=>{
+		let letra = document.querySelector('.work').value;
+
+		if(letra.toUpperCase() == "MATUTINO"){
+			document.querySelector('.work-hours').innerText = "Bom dia!";
+		}else if(letra.toUpperCase() == "VESPERTINO"){
+			document.querySelector('.work-hours').innerText = "Boa tarde!";
+		}else if(letra.toUpperCase() == "NOTURNO"){
+			document.querySelector('.work-hours').innerText = "Boa noite!";
+		}else{
+			document.querySelector('.work-hours').innerText = "Valor invalido";	
 		}
 	})
 </script>
