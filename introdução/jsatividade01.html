@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+	<title>Calcular</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Raleway', sans-serif;
+		}
+
+		body,html {
+			width: 100%;
+			height: 100%;
+			padding: 0 2%;
+		}
+
+		body h3 {
+			margin-top: 50px;
+		}
+
+		.hello {
+			width: 100%;
+			padding: 20px;
+			text-align: center;
+		}
+
+		form {
+			margin-top: 20px;
+			width: 100%;
+			max-width: 600px;
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+		}
+
+		div {
+			padding: 20px 0;
+		}
+
+		input[type=number]{
+			width: 100%;
+			padding: 10px 2%;
+			outline: 0;
+			border: 1px solid #ccc;
+		}
+
+		input[type=text]{
+			width: 100%;
+			padding: 10px 2%;
+			outline: 0;
+			border: 1px solid #ccc;
+		}
+
+
+		button {
+			width: 100%;
+			max-width: 250px;
+			padding: 10px;
+			border-radius: 2px;
+			outline: 0;
+			cursor: pointer;
+			border: 0;
+			color: white;
+			background-color:cadetblue;
+			transition: 0.5s;
+		}
+
+		button:hover {
+			background-color:darkcyan;
+		}
+	</style>
+</head>
+<body>
+
+
+<h3>Coloque um numero</h3>
+<form id="form-numero">
+<input type="number" class="info-number" placeholder="Informe um numero"/>
+<button type="submit">Mostrar Numero</button>
+</form>
+
+<div class="numero">
+	O numero informado é: 0
+</div>	
+	
+
+<h3>Coloque os numero para a soma</h3>
+<form id="form-soma">
+	<div style="display: flex; gap: 5px;">
+	<input type="number" class="numberone" placeholder="Numero 1"/>
+	<input type="number" class="numbertwo" placeholder="Numero 2"/>
+	</div>
+	<button type="submit">Somar</button>
+</form>
+
+<div class="numeros">
+	Soma dos numeros é: 0
+</div>
+
+
+
+<h3>Coloque os numero para a divisão</h3>
+<form id="form-nota">
+	<div style="display: flex; gap: 5px;">
+	<input type="number" class="p-nota" placeholder="Nota 1" required/>
+	<input type="number" class="s-nota" placeholder="Nota 2" required/>
+	<input type="number" class="t-nota" placeholder="Nota 3" required/>
+	<input type="number" class="q-nota" placeholder="Nota 4" required/>
+	</div>
+	<button type="submit">Mostrar media</button>
+</form>
+
+<div class="media">
+	Sua media é: 0
+</div>
+
+<h3>Calcule seu salário</h3>
+<form id="form-salario">
+	<div style="display: flex; gap: 5px;">
+	<input type="number" class="salario" placeholder="Quanto você ganha por hora?" required/>
+	<input type="number" class="horas" placeholder="Quantas horas você trabalha em um dia?" required/>
+	</div>
+	<button type="submit">Calcular salario</button>
+</form>
+
+<div class="show-salario">
+	Seu salario no respectivo mês é: 0
+</div>
+
+<h3>Calcule o tempo de velocidade do download de um arquivo</h3>
+<form id="form-download">
+	<div style="display: flex; gap: 5px;">
+	<input type="number" class="tamanho" placeholder="Qual o tamanho do arquivo?" required/>
+	<input type="number" class="velocidade" placeholder="Qual a velocidade da sua internet?" required/>
+	</div>
+	<button type="submit">Calcular tempo</button>
+</form>
+
+<div class="download">
+	Tempo aproximado é:
+</div>
+
+
+<form id="hello-name" style="padding: 20px 0;">
+	<input type="text" id="name" placeholder="Qual o seu nome?">
+	<button type="submit">Boa noite!</button>
+</form>
+<script>
+	window.addEventListener('load',()=>{
+		alert('Alo mundo!, prefiro mais "Hello world"');
+	})
+
+
+	const formNumero = document.querySelector('#form-numero');
+	formNumero.addEventListener('submit', event =>{
+		event.preventDefault();
+		let numberone = document.querySelector('.info-number');
+		let numero01 = (numberone.value) * 1;
+		document.querySelector('.numero').innerHTML = "O numero informado é: "+numero01;
+	})
+
+	const formSoma = document.querySelector('#form-soma');
+	formSoma.addEventListener('submit', event =>{
+		event.preventDefault();
+		let numberone = document.querySelector('.numberone');
+		let numbertwo = document.querySelector('.numbertwo');
+		let numero01 = (numberone.value) * 1;
+		let numero02 = (numbertwo.value) * 1;
+		let adicao = numero01 + numero02;
+		document.querySelector('.numeros').innerHTML = "Soma dos numeros é: "+adicao;
+	})
+
+	const formSalario = document.querySelector('#form-salario');
+	formSalario.addEventListener('submit', event =>{
+		event.preventDefault();
+		let valor = document.querySelector('.salario').value;
+		let horas = document.querySelector('.horas').value;
+		let total = Number(valor) * Number(horas);
+		document.querySelector('.show-salario').innerHTML = "Seu salario no respectivo mês é: "+total;
+	})
+
+	const formDownload = document.querySelector('#form-download');
+	formDownload.addEventListener('submit', event =>{
+		event.preventDefault();
+		let valor = document.querySelector('.tamanho').value;
+		let horas = document.querySelector('.velocidade').value;
+		let totalminutos = (Number(valor) / (Number(horas) / 8) / 60).toFixed(0);
+		let totalsegundos = Number(valor) / (Number(horas) / 8);
+		if(totalminutos >= 1){
+			document.querySelector('.download').innerHTML = "Tempo aproximado de download é: "+totalminutos+" minutos e "+totalsegundos+" segundos";
+		}else{
+			document.querySelector('.download').innerHTML = "Tempo aproximado de download é: "+totalsegundos+" segundos";
+		}
+	})
+
+
+	const formName = document.querySelector('#hello-name');
+	formName.addEventListener('submit', event =>{
+		event.preventDefault();
+		let name = document.querySelector('#name').value;
+		alert("Boa noite! "+name)
+	})
+</script>	
+</body>
+</html>
