@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+	<title>Atividade JS 03</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Raleway', sans-serif;
+		}
+
+		body,html {
+			width: 100%;
+			height: 100%;
+			padding: 0 2%;
+		}
+
+		body h3 {
+			margin-top: 50px;
+		}
+
+		.hello {
+			width: 100%;
+			padding: 20px;
+			text-align: center;
+		}
+
+		form {
+			margin-top: 20px;
+			width: 100%;
+			max-width: 600px;
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+		}
+
+		div {
+			padding: 20px 0;
+		}
+
+		input[type=number]{
+			width: 100%;
+			padding: 10px 2%;
+			outline: 0;
+			border: 1px solid #ccc;
+		}
+
+		input[type=text]{
+			width: 100%;
+			padding: 10px 2%;
+			outline: 0;
+			border: 1px solid #ccc;
+		}
+
+
+		button {
+			width: 100%;
+			max-width: 250px;
+			padding: 10px;
+			border-radius: 2px;
+			outline: 0;
+			cursor: pointer;
+			border: 0;
+			color: white;
+			background-color:#069132;
+			transition: 0.5s;
+		}
+
+		button:hover {
+			background-color:#069132;
+		}
+	</style>
+</head>
+<body>
+
+<h3>Verificar numero par ou impar</h3>
+<form id="form-soma">
+	<div style="display: flex; gap: 5px;">
+	<input type="number" class="numberone" placeholder="Informe um numero"/>
+	</div>
+	<button type="submit">Mostrar se é par ou impar</button>
+</form>
+
+<div class="numeros">
+	Esse numero é:
+</div>
+
+<h3>Informar as horas (Formato padrão: Uma hora da tarde = 13)</h3>
+<form id="form-poun">
+	<div style="display: flex; gap: 5px;">
+	<input type="number" class="poun" placeholder="Informe as horas!"/>
+	</div>
+	<button type="submit">Informar</button>
+</form>
+
+<div class="numeros-poun">
+	X
+</div>
+
+
+
+<h3>Dias da semana</h3>
+<form id="form-trid">
+	<div style="display: flex; gap: 5px;">
+	<input type="number" class="number01" placeholder="Digite um numero"/>
+	</div>
+	<button type="submit">Mostrar</button>
+</form>
+
+<div class="numeros-trid">
+	X
+</div>
+
+<h3>Calcule seu aumento</h3>
+<form id="form-media">
+	<div style="display: flex; gap: 5px;">
+	<input type="number" class="nota01" placeholder="Digite seu salário"/>
+	</div>
+	<button type="submit">Resultado</button>
+</form>
+
+<div class="numeros-media">
+	X
+</div>
+<script type="text/javascript">
+	const formSoma = document.querySelector('#form-soma');
+	formSoma.addEventListener('submit', event =>{
+		event.preventDefault();
+		let numero01 = parseInt(document.querySelector('.numberone').value);
+		if(numero01){
+			if(numero01%2 == 0){
+				document.querySelector('.numeros').innerText = `Esse numero é:  par`;
+			}else{
+				document.querySelector('.numeros').innerText = `Esse numero é: Impar`;
+			}
+		}
+	})
+
+	const formPorN = document.querySelector('#form-poun');
+	formPorN.addEventListener('submit', event =>{
+		event.preventDefault();
+		let numero01 = parseInt(document.querySelector('.poun').value);
+		if(numero01){
+			if(numero01 < 12){
+				document.querySelector('.numeros-poun').innerText = "Bom dia!";
+			}else if(numero01 < 19){
+				document.querySelector('.numeros-poun').innerText = "Boa tarde!";
+			}else if(numero01 >= 19){	
+				document.querySelector('.numeros-poun').innerText = "Boa noite!";
+			}
+		}
+	})
+
+	const formTrid = document.querySelector('#form-trid');
+	formTrid.addEventListener('submit', event =>{
+		event.preventDefault();
+		const dias = ['domingo','segunda','terça','quarta','quinta', 'sexta', 'sábado']
+		let numero01 = parseInt(document.querySelector('.number01').value);
+
+		if(numero01){
+			if(numero01 > dias.length){
+				document.querySelector('.numeros-trid').innerText = "Numero inválido!";
+			}else{
+				document.querySelector('.numeros-trid').innerText = `${dias[numero01 - 1]}`;
+			}
+		}
+	})
+
+	const formMedia = document.querySelector('#form-media');
+	formMedia.addEventListener('submit', event =>{
+		event.preventDefault();
+		let x = 0;
+		let numero01 = parseInt(document.querySelector('.nota01').value);
+		
+		if(numero01){	
+
+			if(numero01 < 280){
+				
+				x = (numero01 * 20) / 100;
+				document.querySelector('.numeros-media').innerText = `Seu salário é: R$${numero01}, o percentual aplicado foi de 20%, o valor do aumento é: R$${x}, seu novo salário é: R$${numero01 + x}`
+			
+			}else if(numero01 < 700){
+				
+				x = (numero01 * 15) / 100;
+				document.querySelector('.numeros-media').innerText = `Seu salário é: R$${numero01}, o percentual 
+				aplicado foi de 15%, o valor do aumento é: R$${x}, seu novo salário é: R$${numero01 + x}`
+			
+			}else if(numero01 < 1500){
+			
+				x = (numero01 * 10) / 100;
+				document.querySelector('.numeros-media').innerText = `Seu salário é: R$${numero01}, o percentual aplicado foi de 10%, o valor do aumento é: R$${x}, seu novo salário é: R$${numero01 + x}`
+			
+			}else if(numero01 > 1500){
+				x = (numero01 * 5) / 100;
+				document.querySelector('.numeros-media').innerText = `Seu salário é: R$${numero01}, o percentual aplicado foi de 5%, o valor do aumento é: R$${x}, seu novo salário é: R$${numero01 + x}`
+			}
+
+		}
+	})
+</script>
+</body>
+</html>
