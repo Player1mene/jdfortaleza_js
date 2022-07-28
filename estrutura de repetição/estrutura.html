@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="number-20"></div>
+        <br>
+        <div class="number-30"></div>
+        <div class="match-number"></div>
+        <br>
+        <div class="number">
+            <input type="text" class="inter-number"/>
+            <input type="text" class="inter"/>
+            <button type="button" onclick="gerarinterview()">Gerar intervalo</button>
+            <br>
+            <div class="interview"></div>
+        </div>
+
+        <br>
+
+        
+        <div class="number-hunt">
+            <input type="text" class="inter-01"/>
+            <input type="text" class="inter-02"/>
+            <input type="text" class="inter-03"/>
+            <input type="text" class="inter-04"/>
+            <input type="text" class="inter-05"/>
+            <button type="button" onclick="numberInter()">Gerar intervalo</button>
+            <br>
+            <div class="seption"></div>
+        </div>
+        <br>
+        <div class="number-100"></div>
+        <br>
+
+        
+        <div class="calc">
+            <input type="text" class="calc-table"/>
+            <button type="button" onclick="calcTable()">Fazer Tabuada</button>
+            </br>
+            <div class="tabuada"></div>
+            <br>
+        </div>
+        <script>
+            for(let i = 1; i <= 20; i++){
+               document.querySelector('.number-20').innerHTML += `<span>${i} </span>`
+            }
+
+            let number = 0;
+
+            for(let i = 1; i <= 30; i++){
+                number+=i;
+                document.querySelector('.number-30').innerHTML += `<span>${i} </span>`
+                document.querySelector('.match-number').innerHTML = `</br> Soma: <span>${number} </span> </br>`
+            }
+
+            for(let i = 0; i < 100; i++){
+                if(i%2 !== 0){
+                    document.querySelector('.number-100').innerHTML += `<span>${i} </span>`
+                }
+            }
+            
+            gerarinterview = ()=>{
+                let interviewNumber = parseInt(document.querySelector('.inter-number').value);
+                let interview = parseInt(document.querySelector('.inter').value);
+                
+                if(interviewNumber){
+                    if(interview){
+                        for(let i = interviewNumber; i < interview; i++){
+                            document.querySelector('.interview').innerHTML += `<span>${i} </span>`
+                        }
+                    }else{
+                    alert('opa isso não é um numero')
+                    }
+                }else{
+                    alert('opa isso não é um numero')
+                }
+
+
+            }
+
+            numberInter = () =>{
+                let inter01 = parseInt(document.querySelector('.inter-01').value)
+                let inter02 = parseInt(document.querySelector('.inter-02').value)
+                let inter03 = parseInt(document.querySelector('.inter-03').value)
+                let inter04 = parseInt(document.querySelector('.inter-04').value)
+                let inter05 = parseInt(document.querySelector('.inter-05').value)
+                let numberM = 0;
+                let numberX = (inter01 + inter02 + inter03 + inter04 + inter05);
+                let numberY = (inter01 + inter02 + inter03 + inter04 + inter05) / 5;
+
+                if(inter01 > inter02 && inter01 > inter03 && inter01 > inter04  && inter01 > inter05){
+                    numberM = inter01;
+                }else if(inter02 > inter01 && inter02 > inter03 && inter02 > inter04  && inter02 > inter05){
+                    numberM = inter02;
+                }else if(inter03 > inter01 && inter03 > inter02 && inter03 > inter04  && inter03 > inter05){
+                    numberM = inter03;
+                }else if(inter04 > inter01 && inter04 > inter02 && inter04 > inter03  && inter04 > inter05){
+                    numberM = inter04;
+                }else if(inter05 > inter01 && inter05 > inter02 && inter05 > inter03  && inter05 > inter04){
+                    numberM = inter05;
+                }  
+
+                if(numberM && numberX && numberY){
+                    document.querySelector('.seption').innerHTML = `<br> <span> Maior numero é: ${numberM}, a soma de todos é: ${numberX}, sua media é: ${numberY}</span>`
+                }else{
+                    alert('Opa! tem algo errado aí')
+                }
+            
+            }
+
+
+            calcTable = () =>{
+                let calc = parseInt(document.querySelector('.calc-table').value);
+
+                if(calc){
+                    document.querySelector('.tabuada').innerHTML = " ";
+                    for(let i = 1; i <= 10; i++){
+                        document.querySelector('.tabuada').innerHTML += `<span>${calc} * ${i} = ${calc * i} |</span>`
+                    }
+                }else{
+                    alert('Opa! tem algo errado aí')
+                }
+            }
+        </script>
+    </body>
+</html>
