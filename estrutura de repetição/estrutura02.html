@@ -4,23 +4,179 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                align-content: center;
+            }
+
+            .info-number {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                height: 200px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .inputs {
+                padding: 0 50px;
+                display: flex;
+                gap: 20px;
+                width: 100%;
+            }
+
+
+            .inputs input {
+                width: 100%;
+            }
+        </style>
     </head>
     <body>
-        
+
+        <div class="info-number">
+            <div class="inputs">
+                <input type="text" class="snap" value="">
+                <input type="text" class="snap"value="">
+                <input type="text" class="snap"value="">
+                <input type="text" class="snap"value="">
+                <input type="text" class="snap"value="">
+                <input type="text" class="snap"value="">
+                <input type="text" class="snap"value="">
+                <input type="text" class="snap"value="">
+                <input type="text" class="snap"value="">
+                <input type="text" class="snap"value="">
+            </div>
+            <button onclick="mostrarImPar()">Mostrar</button>
+        <div class="numbers"></div>
+        </div>
+
+        <div class="info-number" style="width: 50%;">
+            <div class="inputs">
+                <input type="text" class="fibonacci" placeholder="Qual a quantidade de numeros Fibonacci você quer?">
+            </div>
+            <button onclick="mostrarFibonaci()">Mostrar</button>
+        <div class="numbers-f"></div>
+        </div>
+
+
+        <div class="info-number" style="width: 50%;">
+            <div class="inputs">
+                <label for="nota" id="labe" >Numero: </label>
+                <input type="text" id="nota" placeholder="Coloque um numero de 0 a 10" onkeyup="verification()">
+            </div>
+        </div>
+
+        <div class="info-number" style="width: 50%;">
+            <button onclick="calcular()">Calcular notas</button>
+        </div>
+
+        <div class="info-number" style="width: 50%;">
+            <button onclick="fatorial()">Fatorial</button>
+            <div class="fatorial"></div>
+        </div>
+
 
         <script>
+
+
+            calcular = () => {
+                let notas = parseInt(prompt('Quantas notas você quer calcular?'));
+                let soma = 0;
+                if(notas){
+                    for(let i=0;i<notas;i++){
+                        let nota = parseInt(prompt('Digite a nota'));
+                        soma+=nota;
+                    }
+                    alert(`Soma: ${soma}, Media: ${soma / notas}`)
+                }
+            }
+
+
+            verification = () => {
+                let note = parseInt(document.getElementById('nota').value);
+
+                if(note){
+                    if(note > 10){
+                        document.getElementById('labe').innerText = 'Opá não pode ser esse numero!';
+                    }else if(note < 0){
+                        document.getElementById('labe').innerText = 'Opá não pode ser esse numero!';    
+                    }else{
+                        document.getElementById('labe').innerText = 'Numero: ';
+                    }
+                }
+            }
+
+
+            mostrarImPar = () => {
+                let snap = document.querySelectorAll('.snap');
+                document.querySelector('.numbers').innerHTML = " ";
+                for(let i = 0; i < snap.length; i++){
+                    if(snap[i]){    
+                        if(snap[i].value%2 == 0){
+                            document.querySelector('.numbers').innerHTML += `| ${snap[i].value} Par |`;
+                        }else{
+                            document.querySelector('.numbers').innerHTML += `| ${snap[i].value} Impar |`;
+                        }
+                    }                    
+                }
+            }
+
+
+
+
+
+
             function GenerateFibonacci(number){
             var fibonacci = [];
             fibonacci[0] = 0;
             fibonacci[1] = 1;
-            for (var i = 2; i < number; i++) {
+            for (let i = 2; i < number; i++) {
             fibonacci[i] = fibonacci[i - 2] + fibonacci[i - 1];
             }
             return fibonacci;
             }
-            var f = GenerateFibonacci(10);
-            console.log(f);
 
+            mostrarFibonaci = () => {
+                let fibo = parseInt(document.querySelector('.fibonacci').value);
+                document.querySelector('.numbers-f').innerHTML = "";
+                if(fibo){
+                    var f = GenerateFibonacci(fibo);
+                    for(let i=0;i<f.length;i++){
+                        document.querySelector('.numbers-f').innerHTML += ` ${f[i]} `;
+                    }
+                }
+            }
+
+            fatorial = () => {
+                let valor = parseInt(prompt('Digite o numero para o fatorial!'));
+                let multi = valor;
+                document.querySelector('.fatorial').innerHTML = "";
+                if(valor != 1){
+                    for(let i = valor - 1; i >= 1; i--){
+                        multi *= i;
+
+                        if(i == valor - 1){
+                            document.querySelector('.fatorial').innerHTML += valor+"!"+" = "+valor+" . "+i+" ";
+                        }else if(i == 1){    
+                            document.querySelector('.fatorial').innerHTML += " . "+i+" = "+multi;
+                        }else{
+                            document.querySelector('.fatorial').innerHTML += " . "+i;    
+                        }
+                    }
+                }else{
+                    document.querySelector('.fatorial').innerHTML = "1! = 1 . 1 = 1";                   
+                }
+            }
         </script>
     </body>
 </html>
